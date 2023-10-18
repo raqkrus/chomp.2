@@ -2,23 +2,31 @@ import pygame
 #pygame setup
 pygame.init()
 #set resolution of our game window
-WIDTH = 800
-HEIGHT = 600
+WIDTH = 1080
+HEIGHT = 720
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
-#loud our players (fish)
-puffer_fish = pygame.image.load('puffer_fish.png')
+
+#load our players (fish)
+puffer_fish = pygame.image.load('fish/puffer_fish.png')
+water_tile = pygame.image.load('fish/fishTile_089.png')
+sand_top_tile = pygame.image.load('fish/fishTile_021.png')
+tile_width = water_tile.get_width()
+tile_height = water_tile.get_height()
+sand_tile = pygame.image.load('fish/fishTile_126.png')
 
 #make background
 background = pygame.Surface((WIDTH, HEIGHT))
-#fill it with a beautiful sky
-background.fill((52,140,235)) #fill it with blue
-#make a sandy rectangle
-sand_height = 100
-pygame.draw.rect(background, (250,192,85), (0, HEIGHT-sand_height, WIDTH, sand_height))
 
-#draw the background on the screen
-screen.blit(background, (0,0))
+#draw water tiles
+for x in range(0,WIDTH,tile_width):
+    for y in range(0,HEIGHT,tile_height):
+        background.blit(water_tile, (x,y))
+
+#draw sand tiles
+for x in range(0,WIDTH,tile_width):
+    for y in range(0,HEIGHT,tile_height):
+        background.blit(sand_top_tile, (x,HEIGHT-2*tile_height)
 
 running = True
 
